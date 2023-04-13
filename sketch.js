@@ -83,6 +83,22 @@ function setup() {
   button2.size(50,50);
 
  // escreva um bloco de código correto para adicionar um botão para cortar a corda 
+  button.mouseClicked(cutRope);
+button2.mouseClicked(cutRope2);
+
+// Função pra cortar a primeira corda
+function cutRope(){
+rope.break();
+con.dettach();
+con = null;
+}
+
+// Função pra cortar a segunda corda
+function cutRope2(){
+rope2.break();
+con2.dettach();
+con2 = null;
+}
 
   ellipseMode(RADIUS);
 }
@@ -112,6 +128,26 @@ function draw()
     World.remove(engine.world,fruit);
     fruit = null;
    //Código para alterar a animação do coelho quando uma colisão for detectada.
+  if(collide(fruit,bunny,80)==true)
+{
+remove_rope();
+bubble.visible = false;
+World.remove(engine.world,fruit);
+fruit = null;
+bunny.changeAnimation('eating'); 
+}
+
+
+if(collide(fruit,bubble,40) == true)
+{
+engine.world.gravity.y = -1;
+bubble.position.x = fruit.position.x;
+bubble.position.y = fruit.position.y;
+bunny.changeAnimation('crying'); =
+}
+{
+
+
   }
   
   if(collide(fruit,bubble,40) == true)
